@@ -4,6 +4,9 @@ class ListsController < ApplicationController
   # GET /lists
   # GET /lists.json
   def index
+    p params[:list_id]
+    #@list_id = params[:list_id]
+    #@items = List.find(@list_id).items
     @lists = List.all
   end
 

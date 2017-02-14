@@ -7,24 +7,20 @@ class ItemsController < ApplicationController
     #@items = Item.all
     @list_id = params[:list_id] || 1
     #@list_id = params[:list_id] || 1
-    @items = List.find(@list_id).items.where(todo_flag: false)
-    #@items = List.find(@list_id).items
+    @items = List.find(@list_id).items.where(todo_frag: false)
   end
 
   # GET /items/1
   # GET /items/1.json
   def show
-    #redirect_to items_path(list_id: @list_id)
   end
 
   # GET /items/new
   def new
     #@item = Item.new(list_id: list_id)
     #@item = Item.new
-    #list_id = params[:list_id]
-    #@item = Item.new(list_id: list_id)
-    @list_id = params[:list_id]
-    @item = Item.new(list_id: @list_id)
+    list_id = params[:list_id]
+    @item = Item.new(list_id: list_id)
   end
 
   # GET /items/1/edit
@@ -78,11 +74,8 @@ class ItemsController < ApplicationController
     id = params[:id]
     Item.find(id).update(todo_flag: true)
     #@Item.update(todo_flag: true)
-    #list_id = Item.find(id).list.id
-    #redirect_to items_path(list_id: list_id), notice: 'Item was successfully done.'
-    #redirect_to lists_path(list_id: list_id), notice: 'Item was successfully done.'
-    @list_id = Item.find(id).list.id
-    redirect_to items_path(list_id: @list_id), notice: 'Item was successfully done.'
+    list_id = Item.find(id).list.id
+    redirect_to items_path(list_id: list_id), notice: 'Item was successfully done.'
   end
 
   private
