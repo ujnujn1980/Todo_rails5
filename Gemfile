@@ -23,6 +23,8 @@ gem 'therubyracer', platforms: :ruby
 
 gem 'sinatra', '2.0.0.beta2'
 
+gem 'devise'
+
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
