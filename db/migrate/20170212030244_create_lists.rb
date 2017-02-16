@@ -4,6 +4,9 @@ class CreateLists < ActiveRecord::Migration[5.0]
       t.string :name
 
       t.timestamps
+
+      # refer user
+      t.references :users, foreign_key: true
     end
   end
 end
