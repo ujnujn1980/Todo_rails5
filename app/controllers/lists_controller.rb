@@ -18,7 +18,9 @@ class ListsController < ApplicationController
 
   # GET /lists/new
   def new
-    @list = List.new
+    #@list = List.new
+    @list = List.new(users_id: params[:id])
+    #@list = List.new(users_id: 1)
   end
 
   # GET /lists/1/edit
