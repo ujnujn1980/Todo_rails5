@@ -8,7 +8,8 @@ class ListsController < ApplicationController
     p params[:list_id]
     #@list_id = params[:list_id]
     #@items = List.find(@list_id).items
-    @lists = List.all
+    #@lists = List.all
+    @lists = List.where(:user_id => current_user.id)
   end
 
   # GET /lists/1
