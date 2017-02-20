@@ -21,7 +21,9 @@
         <td><%= item.desc %></td>
         <td><%= item.todo_flag %></td>
 	<!-- <td><%= item.list %></tda> -->
-        <td><%= p params[:list_id] %></td>
+    <!-- <td><%= p params[:list_id] %></td> -->
+        <td><%= p params[:id] %></td>
+        <td><%= p item.id %></td>
 	<td><%= link_to '完了', done_path(item) %></td> 
         <td><%= link_to 'Show', item %></td>
         <td><%= link_to 'Edit', edit_item_path(item) %></td>

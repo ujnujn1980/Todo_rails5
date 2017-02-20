@@ -83,7 +83,8 @@ class ItemsController < ApplicationController
     @item.destroy
     respond_to do |format|
       #format.html { redirect_to items_url, notice: 'Item was successfully destroyed.' }
-      format.html { redirect_to items_url(list_id: @item.list_id), notice: 'Item was successfully destroyed.' }
+      #format.html { redirect_to items_url(list_id: @item.list_id), notice: 'Item was successfully destroyed.' }
+      format.html { redirect_to list_items_path(id: @item.list_id), notice: 'Item was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -98,7 +99,8 @@ class ItemsController < ApplicationController
     #redirect_to items_path(list_id: list_id), notice: 'Item was successfully done.'
     #redirect_to lists_path(list_id: list_id), notice: 'Item was successfully done.'
     @list_id = Item.find(id).list.id
-    redirect_to items_path(list_id: @list_id), notice: 'Item was successfully done.'
+    #redirect_to list_items_path(list_id: @list_id), notice: 'Item was successfully done.'
+    redirect_to list_items_path(id: @list_id), notice: 'Item was successfully done.'
   end
 
   private
