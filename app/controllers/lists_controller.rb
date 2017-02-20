@@ -19,7 +19,7 @@ class ListsController < ApplicationController
   # GET /lists/new
   def new
     #@list = List.new
-    @list = List.new(users_id: params[:id])
+    @list = List.new(user_id: params[:id])
     #@list = List.new(users_id: 1)
   end
 
@@ -75,6 +75,7 @@ class ListsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def list_params
-      params.require(:list).permit(:name)
+      #params.require(:list).permit(:name)
+      params.require(:list).permit(:name, :user_id)
     end
 end
