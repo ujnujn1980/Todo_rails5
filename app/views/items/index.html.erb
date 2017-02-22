@@ -15,16 +15,11 @@
   <tbody>
     <% @items.each do |item| %>
       <tr>
-	      <!-- <%  p params[:id] || 'nil'%> -->
-	      <!-- <%  p params[:format] %> -->
-	      <!--<%=  p params[:format] ||'nil'%> -->
         <td><%= item.desc %></td>
         <td><%= item.todo_flag %></td>
-	<!-- <td><%= item.list %></tda> -->
-    <!-- <td><%= p params[:list_id] %></td> -->
         <td><%= p params[:id] %></td>
         <td><%= p item.id %></td>
-	<td><%= link_to '完了', done_path(item) %></td> 
+	    <td><%= link_to '完了', done_path(item) %></td> 
         <td><%= link_to 'Show', item %></td>
         <td><%= link_to 'Edit', edit_item_path(item) %></td>
         <td><%= link_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -36,5 +31,4 @@
 <br>
 
 <%= link_to 'Todoの追加', new_item_path(@list) %> 
-<!-- <%= link_to 'listに戻る', lists_path(list_id: @list_id) %> -->
 <%= link_to 'listに戻る', lists_path %> 

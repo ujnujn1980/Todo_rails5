@@ -6,9 +6,6 @@ class ListsController < ApplicationController
   # GET /lists.json
   def index
     p params[:list_id]
-    #@list_id = params[:list_id]
-    #@items = List.find(@list_id).items
-    #@lists = List.all
     @lists = List.where(:user_id => current_user.id)
   end
 
@@ -19,9 +16,7 @@ class ListsController < ApplicationController
 
   # GET /lists/new
   def new
-    #@list = List.new
     @list = List.new(user_id: params[:id])
-    #@list = List.new(users_id: 1)
   end
 
   # GET /lists/1/edit
@@ -35,10 +30,7 @@ class ListsController < ApplicationController
 
     respond_to do |format|
       if @list.save
-        #format.html { redirect_to @list, notice: 'List was successfully created.' }
         format.html { redirect_to lists_path, notice: 'List was successfully created.' }
-        #format.html { redirect_to lists_path }
-        #format.json { render :show, status: :created, location: @list }
       else
         format.html { render :new }
         format.json { render json: @list.errors, status: :unprocessable_entity }
@@ -78,7 +70,6 @@ class ListsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def list_params
-      #params.require(:list).permit(:name)
       params.require(:list).permit(:name, :user_id)
     end
 end

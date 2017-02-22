@@ -1,20 +1,12 @@
 class ItemsController < ApplicationController
   before_action :set_item, only: [:show, :edit, :update, :destroy]
-  #before_action :set_item, only: [:show, :edit,  :destroy]
-  before_action :authenticate_user!
   before_action :set_list, only: [:index]
+  before_action :authenticate_user!
 
   # GET /items
   # GET /items.json
   def index
-    #@items = Item.all
-    #@list_id = params[:list_id] || 1
-    #@list_id = params[:list_id] || 1
-    #@list = List.find(@list_id)
-    #@items = List.find(@list_id).items.where(todo_flag: false)
-    #set_list 
     @items = @list.items.where(todo_flag: false)
-    #@items = List.find(@list_id).items
   end
 
   # GET /items/1
@@ -25,13 +17,6 @@ class ItemsController < ApplicationController
 
   # GET /items/new
   def new
-    #@item = Item.new(list_id: list_id)
-    #@item = Item.new
-    #list_id = params[:list_id]
-    #@item = Item.new(list_id: list_id)
-    #@list_id = params[:list_id]
-    #@list = List.find(@list_id)
-    #@item = Item.new(list_id: @list_id)
     @item = Item.new(list_id: params[:id])
   end
 
@@ -42,17 +27,11 @@ class ItemsController < ApplicationController
   # POST /items
   # POST /items.json
   def create
-    #@item = Item.new(item_params)
     @item = Item.new(item_params)
 
     respond_to do |format|
       if @item.save
-        #format.html { redirect_to @item, notice: 'Item was successfully created.' }
-        #format.html { redirect_to list_items_path(list_id: item_params[:list_id]), notice: 'Item was successfully created.' }
         format.html { redirect_to list_items_path(id: item_params[:list_id]), notice: 'Item was successfully created.' }
-        #format.html { redirect_to items_path(list_id: 1), notice: 'Item was successfully created.' }
-        #format.html { redirect_to items_path(list_id: @item.list_id]), notice: 'Item was successfully created.' }
-        #format.html { redirect_to item_path(list_id: item_params[:list_id]), notice: 'Item was successfully created.' }
         format.json { render :show, status: :created, location: @item }
       else
         format.html { render :new }
@@ -66,8 +45,6 @@ class ItemsController < ApplicationController
   def update
     respond_to do |format|
       if @item.update(item_params)
-        #format.html { redirect_to @item, notice: 'Item was successfully updated.' }
-	 #format.html { redirect_to list_items_path(list_id: item_params[:list_id]), notice: 'Item was successfully updated.' }
 	 format.html { redirect_to list_items_path(id: item_params[:list_id]), notice: 'Item was successfully updated.' }
         format.json { render :show, status: :ok, location: @item }
       else
@@ -82,24 +59,15 @@ class ItemsController < ApplicationController
   def destroy
     @item.destroy
     respond_to do |format|
-      #format.html { redirect_to items_url, notice: 'Item was successfully destroyed.' }
-      #format.html { redirect_to items_url(list_id: @item.list_id), notice: 'Item was successfully destroyed.' }
       format.html { redirect_to list_items_path(id: @item.list_id), notice: 'Item was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   def done
-    #id = params[:item_id]
-    #id = params[:format]
     id = params[:id]
     Item.find(id).update(todo_flag: true)
-    #@Item.update(todo_flag: true)
-    #list_id = Item.find(id).list.id
-    #redirect_to items_path(list_id: list_id), notice: 'Item was successfully done.'
-    #redirect_to lists_path(list_id: list_id), notice: 'Item was successfully done.'
     @list_id = Item.find(id).list.id
-    #redirect_to list_items_path(list_id: @list_id), notice: 'Item was successfully done.'
     redirect_to list_items_path(id: @list_id), notice: 'Item was successfully done.'
   end
 
@@ -115,7 +83,6 @@ class ItemsController < ApplicationController
     end
 
     def set_list
-      #@list = List.find(params[:list_id]) || 1
       @list = List.find(params[:id]) || 1
     end
 
