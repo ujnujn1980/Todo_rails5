@@ -5,9 +5,9 @@
 <table>
   <thead>
     <tr>
+      <th>Item id</th>
       <th>Desc</th>
       <th>Todo flag</th>
-      <th>List id</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -15,10 +15,9 @@
   <tbody>
     <% @items.each do |item| %>
       <tr>
+        <td><%= p item.id %></td>
         <td><%= item.desc %></td>
         <td><%= item.todo_flag %></td>
-        <td><%= p params[:id] %></td>
-        <td><%= p item.id %></td>
 	    <td><%= link_to '完了', done_path(item) %></td> 
         <td><%= link_to 'Show', item %></td>
         <td><%= link_to 'Edit', edit_item_path(item) %></td>
