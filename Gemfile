@@ -62,6 +62,11 @@ group :development do
   gem 'hirb'         # モデルの出力結果を表形式で表示するGem
   gem 'hirb-unicode' # 日本語などマルチバイト文字の出力時の出力結果のずれに対応
 
+  gem 'rspec-rails'
+  gem 'rspec-core', '>=3.4.4'
+  gem 'guard-rspec'
+  gem 'factory_girl_rails'
+
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

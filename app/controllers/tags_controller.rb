@@ -15,6 +15,7 @@ class TagsController < ApplicationController
   end
 
   def edit
+    #いつかset_tagにする
     @tag=Tag.find(params[:id])
   end
 
@@ -34,6 +35,8 @@ class TagsController < ApplicationController
   end
 
   def update
+    #いつかset_tagにする
+    @tag=Tag.find(params[:id])
     respond_to do |format|
       if @tag.update(tag_params)
 	    format.html { redirect_to tags_path, notice: 'tag was successfully updated.' }
