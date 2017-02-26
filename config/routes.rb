@@ -11,14 +11,16 @@ Rails.application.routes.draw do
   get     '/list/:id',      to: 'items#index' , as: 'list_items'
   post    '/list/:id',      to: 'items#create' 
 
-  get     '/tags/',         to: 'tags#index' ,  as: 'tags'
-  post    '/tags/',         to: 'tags#create'
-  get     '/tags/new',      to: 'tags#new' ,    as: 'new_tag'
-  patch   '/tag/:id',       to: 'tags#index',   as: 'index_tag'
-  #put     '/tag/:id',       to: 'tags#index',   as: 'index_tag'
-  delete  '/tag/:id',       to: 'tags#destroy', as: 'tag'
-  get     '/tag/:id/edit',  to: 'tags#edit',    as: 'edit_tag'
+  # get     '/tags/',         to: 'tags#index' ,  as: 'tags'
+  # post    '/tags/',         to: 'tags#create'
+  # get     '/tags/new',      to: 'tags#new' ,    as: 'new_tag'
+  # get     '/tag/:id',       to: 'tags#index',   as: 'index_tag'
+  # patch   '/tag/:id',       to: 'tags#index',   as: 'index_tag'
+  # #put     '/tag/:id',       to: 'tags#index',   as: 'index_tag'
+  # delete  '/tag/:id',       to: 'tags#destroy', as: 'tag'
+  # get     '/tag/:id/edit',  to: 'tags#edit',    as: 'edit_tag'
 
   resources :items, except: [:new]
   resources :lists 
+  resources :tags 
 end
