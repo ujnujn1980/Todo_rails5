@@ -15,6 +15,7 @@ class TagsController < ApplicationController
   end
 
   def edit
+    @tag=Tag.find(params[:id])
   end
 
   def create
@@ -22,7 +23,7 @@ class TagsController < ApplicationController
 
     respond_to do |format|
       if @tag.save
-        format.html { redirect_to tags_path, notice: 'Tag was successfully created.' }
+        format.html { redirect_to index_tag_path, notice: 'Tag was successfully created.' }
         format.json { render :show, status: :created, location: @tag }
       else
         format.html { render :new }
@@ -32,11 +33,24 @@ class TagsController < ApplicationController
   end
 
   def update
-      @Tags = Tag.all
+    respond_to do |format|
+      if @tag.update(tag_params)
+	    format.html { redirect_to tags_path, notice: 'tag was successfully updated.' }
+        format.json { render :show, status: :ok, location: @tag }
+      else
+        format.html { render :edit }
+        format.json { render json: @tag.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   def destroy
-      @Tags = Tag.all
+    @tag = Tag.find(params[:id])
+    @tag.destroy
+    respond_to do |format|
+      format.html { redirect_to tags_path, notice: 'List was successfully destroyed.' }
+      format.json { head :no_content }
+    end
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
